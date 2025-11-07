@@ -1,82 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <title>Clinic PAtient Registration</title>
+<head>
+    <title>Clinic Patient Registration</title>
 
-    <style>button[type="submit"]{
-    background-color: #2a1c86;
+    <style>
+
+        button[type="submit"] {
+            background-color: #076d15ff;
             color: white;
-}</style>
+        }
+    </style>
+</head>
 
 <body>
-<center>
-    <h2> Clinic Patient Registration</h2>
-    
-</center>
-    <center>  
-    <tr>
-        <td >Full Name: </td>
-        <br>
-    
-        <td><input type="text"></td>
-        <br><br>
-        
-        <td >Age: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
+    <center>
+        <h2><b>Clinic Patient Registration</b></h2>
 
-         <td >Phone Number: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
+        <table>
+            <tr>
+                <td>Full Name:<br>
+                    <input type="text">
+                </td>
+            </tr>
 
-         <td >Email Address: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
+            <tr>
+                <td>Age:<br>
+                    <input type="number">
+                </td>
+            </tr>
 
-         <td >Insurance provider : </td>
-        <br>
-        <td>
-            <select >
-                <option>Select Provider</option>
-                <option>MetLife</option>
-                <option>Delta Life Insurance Co Ltd</option>
-                <option>Jiban Bima Corporation</option>
-                <option>Popular Life Insurance Co Ltd. (PLICL)</option>
-            </select>
-        </td>
-        <br><br>
-         <td >Insurance Policy Number: </td>
-        <br>
-        <td><input type="text"></td>
-        <br>
-    </tr>
-    
-</center>
-       
+            <tr>
+                <td>Phone Number:<br>
+                    <input type="number">
+                </td>
+            </tr>
 
-<center><h2>Additional Information</h2></center>
-<center>
-    <tr>
-    <td >Username: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
-        
-        <td >Password: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
+            <tr>
+                <td>Email Address:<br>
+                    <input type="text">
+                </td>
+            </tr>
 
-         <td >Confirm Password: </td>
-        <br>
-        <td><input type="text"></td>
-        <br><br>
+            <tr>
+                <td>Insurance Provider:<br>
+                    <select>
+                        <option>Select Provider</option>
+                        <option>MetLife</option>
+                        <option>Delta Life Insurance Co Ltd</option>
+                        <option>Jiban Bima Corporation</option>
+                    </select>
+                </td>
+            </tr>
 
-</tr>
-</center>
-<center>
-    
-   <button type="submit"> Register</button>
-</center>
+            <tr>
+                <td>Insurance Policy Number:<br>
+                    <input type="number">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h1><b>Additional Information</b></h1>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Username:<br>
+                    <input type="text">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Password:<br>
+                    <input type="password">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Confirm Password:<br>
+                    <input type="password">
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit">Register</button>
+
+    </center>
+</body>
+</html>
