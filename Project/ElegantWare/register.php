@@ -1,3 +1,25 @@
+<?php
+
+$message = '';
+$message_type = '';
+
+// Check if user is already logged in
+if (isLoggedIn()) {
+    redirect('index.php');
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $result = registerUser($_POST);
+    
+    if ($result['success']) {
+        redirect('login.php?registered=true');
+    } else {
+        $message = $result['message'];
+        $message_type = 'danger';
+    }
+}
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -9,6 +31,11 @@
         <div class="auth-container">
             <div class="auth-box">
                 <h1 class="auth-title">Create Account</h1>
+                <?php if ($message): ?>
+                    <div class="alert alert-<?php echo $message_type; ?>">
+                        <?php echo htmlspecialchars($message); ?>
+                    </div>
+                <?php endif; ?>
                 <form id="registerForm" method="POST" action="">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
