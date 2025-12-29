@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <main>
         <div class="auth-container">
             <div class="auth-box">
                 <h1 class="auth-title">Create Account</h1>
@@ -36,9 +37,10 @@
                         <button type="submit" class="btn btn-success">Register</button>            
                     </div>
                 </form>
+                <div class="auth-links">
+                    <p>Already have an account? <a href="login.php">Login</a></p>        
+                </div>
             </div>
         </div>
-            <div class="auth-links">
-                <p>Already have an account? <a href="login.php">Login</a></p>
-            </div>
+        </main>
     </body>
