@@ -29,11 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
     <head>
         <title>Login - ElegantWare</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         <header>
             <nav class="navbar container">
+                <a class="navbar-brand" href="index.php">ElegantWare</a>
+                
 
             </nav>
         </header>
@@ -72,4 +74,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         </main>
+        <script src="js/script.js"></script>
     </body>
