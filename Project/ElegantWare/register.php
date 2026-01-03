@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" id="confirm_password" name="confirm_password" required>                         
                     </div>            
                     <div class="form-group">                        
-                        <button type="submit" class="btn btn-success">Register</button>            
+                        <button type="submit" class="btn btn-primary">Register</button>            
                     </div>
                 </form>
                 <div class="auth-links">
