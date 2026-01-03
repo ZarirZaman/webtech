@@ -31,14 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <head>
         <title>Login - ElegantWare</title>
         <link rel="stylesheet" href="css/style.css">
-        <!-- Add viewport for mobile responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
             <nav class="navbar">
-                <div class="container"> <!-- Added container div -->
-                    <a class="navbar-brand" href="index.php">Elegant<span>Ware</span></a>
+                <div class="container">
+                    <a class="logo" href="index.php">Elegant<span>Ware</span></a>
                 </div>
             </nav>
         </header>

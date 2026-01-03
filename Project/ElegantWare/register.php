@@ -27,6 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <a class="logo" href="index.php">Elegant<span>Ware</span></a>
+                </div>
+            </nav>
+        </header>
         <main>
         <div class="auth-container">
             <div class="auth-box">
