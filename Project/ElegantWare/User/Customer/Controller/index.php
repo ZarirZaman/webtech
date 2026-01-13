@@ -57,6 +57,5 @@ $data = [
     'full_name' => $_SESSION['full_name'] ?? ''
 ];
 
-// Include the view
 include '../View/html/index_view.php';
 ?>

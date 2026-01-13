@@ -1,11 +1,6 @@
 <?php
-// Include config to start session and get database connection
 require_once '../Model/config.php';
-
-// Include auth functions
 require_once '../Model/auth.php';
-
-// Include cart functions
 require_once '../Model/cart_func.php';
 
 // Check if user is logged in
@@ -21,7 +16,6 @@ if (!isset($_SESSION['cart'])) {
 $error = '';
 $success = '';
 
-// Handle GET requests for adding items (from index.php links)
 if (isset($_GET['add_to_cart'])) {
     $product_id = intval($_GET['add_to_cart']);
     addToCart($product_id);
@@ -31,7 +25,6 @@ if (isset($_GET['add_to_cart'])) {
     exit();
 }
 
-// Handle POST requests for cart actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_to_cart'])) {
         $product_id = intval($_POST['product_id']);
@@ -49,44 +42,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $index = intval($index);
                 $qty = intval($qty);
                 if ($qty <= 0) {
-                    // Remove item by index
                     if (isset($_SESSION['cart'][$index])) {
                         unset($_SESSION['cart'][$index]);
                     }
                 } else {
-                    // Update quantity by index
                     if (isset($_SESSION['cart'][$index])) {
                         $_SESSION['cart'][$index]['quantity'] = $qty;
                     }
                 }
             }
-            // Re-index array after possible deletions
             $_SESSION['cart'] = array_values($_SESSION['cart']);
             $_SESSION['cart_message'] = 'Cart updated successfully!';
         }
         
     } elseif (isset($_POST['remove_item'])) {
-        // Remove specific item by index
         $index = intval($_POST['index'] ?? 0);
         if (isset($_SESSION['cart'][$index])) {
             unset($_SESSION['cart'][$index]);
-            // Re-index array
             $_SESSION['cart'] = array_values($_SESSION['cart']);
         }
         $_SESSION['cart_message'] = 'Item removed from cart!';
         
     } elseif (isset($_POST['clear_cart'])) {
-        // Clear entire cart
         clearCart();
         $_SESSION['cart_message'] = 'Cart cleared successfully!';
     }
     
-    // Redirect to avoid form resubmission
     header('Location: cart.php');
     exit();
 }
 
-// Sample products database
 $products = [
     1 => [
         'id' => 1, 
@@ -122,20 +107,17 @@ $products = [
     ],
 ];
 
-// Calculate cart totals
 $cart_items = [];
 $cart_total = 0;
 $item_count = 0;
 
-// Loop through cart items (indexed array)
 foreach ($_SESSION['cart'] as $index => $cart_item) {
-    // Get product_id from the cart item
     if (isset($cart_item['product_id'])) {
         $product_id = intval($cart_item['product_id']);
     } elseif (isset($cart_item['id'])) {
         $product_id = intval($cart_item['id']);
     } else {
-        continue; // Skip if no product ID
+        continue; 
     }
     
     if (isset($products[$product_id])) {
@@ -144,7 +126,7 @@ foreach ($_SESSION['cart'] as $index => $cart_item) {
         $item_total = $product['price'] * $quantity;
         
         $cart_items[] = [
-            'index' => $index, // Store the index for removing items
+            'index' => $index, 
             'product_id' => $product_id,
             'product' => $product,
             'quantity' => $quantity,
@@ -191,7 +173,6 @@ $data = [
     'is_logged_in' => isLoggedIn()
 ];
 
-// Clear the cart message after displaying
 if (isset($_SESSION['cart_message'])) {
     unset($_SESSION['cart_message']);
 }
