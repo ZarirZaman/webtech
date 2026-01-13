@@ -21,8 +21,8 @@ if ($conn->connect_error) {
 define('SITE_NAME', 'ElegantWare');
 define('SITE_URL', 'http://localhost/ElegantWare/User/Customer/');
 
-define('BASE_PATH', __DIR__ . '/../'); 
-define('MODEL_PATH', __DIR__ . '/'); 
+define('BASE_PATH', __DIR__ . 'Customer/'); 
+define('MODEL_PATH', __DIR__ . '/Customer/Model/'); 
 define('CONTROLLER_PATH', BASE_PATH . 'Controller/');
 define('VIEW_PATH', BASE_PATH . 'View/');
 
