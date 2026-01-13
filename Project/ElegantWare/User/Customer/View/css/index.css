@@ -1215,3 +1215,147 @@ footer {
 .cart-summary .cart-text {
     font-weight: 500;
 }
+/* ======================
+   SORTING CONTROLS
+   ====================== */
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-label {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.sort-select {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background-color: white;
+    color: #495057;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.sort-select:hover {
+    border-color: #adb5bd;
+}
+
+/* ======================
+   PRODUCT DESCRIPTION VIEW MORE
+   ====================== */
+.product-description-container {
+    min-height: 80px;
+    margin: 10px 0;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.description-short {
+    display: inline;
+}
+
+.description-full {
+    display: none;
+}
+
+.view-more-link {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 5px;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.view-more-link:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* ======================
+   PRODUCT RATING
+   ====================== */
+.product-rating {
+    margin: 8px 0 12px;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.stars i {
+    color: #f39c12;
+    font-size: 0.9rem;
+}
+
+.rating-value {
+    margin-left: 8px;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    font-weight: 600;
+}
+
+/* ======================
+   PRICE BADGE
+   ====================== */
+.price-badge {
+    display: inline-block;
+    background: #e8f4fc;
+    color: #3498db;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* ======================
+   RESPONSIVE ADJUSTMENTS
+   ====================== */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .sort-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sort-select {
+        flex-grow: 1;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-description-container {
+        min-height: 60px;
+    }
+}

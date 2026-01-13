@@ -58,54 +58,106 @@
                 </div>
             </div>
         </section>
-
-        
-
-        <!-- Products Section -->
         <section id="products" class="products-section">
-            <div class="container">
+           <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Featured Products</h2>
-                    <a href="#products" class="view-all">
-                        View All <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <div class="products-grid">
-                    <?php foreach ($data['featured_products'] as $product): ?>
-                        <div class="product-card">
-                            <div class="product-image">
-                                <i class="fas <?php echo $product['image_class']; ?>"></i>
-                            </div>
-                            <div class="product-info">
-                                <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                                <span class="product-category"><?php echo $product['category']; ?></span>
-                                <p class="product-description">
-                                    <?php echo htmlspecialchars($product['description']); ?>
-                                </p>
-                                <div class="product-price">
-                                    $<?php echo number_format($product['price'], 2); ?>
-                                </div>
-                                <div class="product-actions">
-                                    <?php if($data['is_logged_in']): ?>
-                                        <a href="index.php?add_to_cart=<?php echo $product['id']; ?>" 
-                                           class="add-to-cart-btn"
-                                           onclick="return addToCart(<?php echo $product['id']; ?>, event)">
-                                            <i class="fas fa-cart-plus"></i> Add to Cart
-                                        </a>
-                                    <?php else: ?>
-                                        <a href="login.php" 
-                                           class="add-to-cart-btn login-to-buy-btn">
-                                            <i class="fas fa-sign-in-alt"></i> Login to Buy
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                   <h2 class="section-title">Featured Products</h2>
+                    <div class="sort-controls">
+                    <span class="sort-label">Sort by: </span>
+                    <select id="sortProducts" class="sort-select" onchange="sortProducts(this.value)">
+                        <option value=""></option>
+                        <option value="high-low">Price: High to Low</option>                    
+                        <option value="low-high">Price: Low to High</option>                    
+                        <option value="name-asc">Name: A to Z</option>                    
+                        <option value="name-desc">Name: Z to A</option>
+                    </select>
                 </div>
             </div>
-        </section>
+        
+        <div class="products-grid">
+            <?php foreach ($data['featured_products'] as $product): 
+                // Split description into short and full versions
+                $short_desc = (strlen($product['description']) > 80) 
+                    ? substr($product['description'], 0, 80) . '...' 
+                    : $product['description'];
+                $has_long_desc = strlen($product['description']) > 80;
+            ?>
+                <div class="product-card" 
+                     data-price="<?php echo $product['price']; ?>" 
+                     data-name="<?php echo htmlspecialchars($product['name']); ?>">
+                    <div class="product-image">
+                        <i class="fas <?php echo $product['image_class']; ?>"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                        <span class="product-category"><?php echo $product['category']; ?></span>
+                        
+                        <!-- Product Description with View More -->
+                        <div class="product-description-container">
+                            <p class="product-description">
+                                <?php if ($has_long_desc): ?>
+                                    <span class="description-short"><?php echo htmlspecialchars($short_desc); ?></span>
+                                    <span class="description-full" style="display: none;">
+                                        <?php echo htmlspecialchars($product['description']); ?>
+                                    </span>
+                                    <a href="#" class="view-more-link" onclick="return toggleDescription(this);">
+                                        View More
+                                    </a>
+                                <?php else: ?>
+                                    <span class="description-full">
+                                        <?php echo htmlspecialchars($product['description']); ?>
+                                    </span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                        
+                        <div class="product-price">
+                            $<?php echo number_format($product['price'], 2); ?>
+                            <span class="price-badge"><?php echo $product['category']; ?></span>
+                        </div>
+                        
+                        <div class="product-rating">
+                            <?php
+                            // Generate random rating for demo
+                            $rating = rand(35, 50) / 10;
+                            $full_stars = floor($rating);
+                            $half_star = ($rating - $full_stars) >= 0.5;
+                            ?>
+                            <div class="stars">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <?php if ($i <= $full_stars): ?>
+                                        <i class="fas fa-star"></i>
+                                    <?php elseif ($half_star && $i == $full_stars + 1): ?>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    <?php else: ?>
+                                        <i class="far fa-star"></i>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                                <span class="rating-value"><?php echo number_format($rating, 1); ?></span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <?php if($data['is_logged_in']): ?>
+                                <a href="index.php?add_to_cart=<?php echo $product['id']; ?>" 
+                                   class="add-to-cart-btn"
+                                   onclick="return addToCart(<?php echo $product['id']; ?>, event)">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </a>
+                            <?php else: ?>
+                                <a href="login.php" 
+                                   class="add-to-cart-btn login-to-buy-btn">
+                                    <i class="fas fa-sign-in-alt"></i> Login to Buy
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 
         <!-- Categories Section -->
         <section id="categories" class="categories-section">

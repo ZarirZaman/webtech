@@ -44,9 +44,34 @@ $featured_products = [
     ['id' => 8, 'name' => 'Luxury Dinnerware Set', 'description' => '24-piece luxury dinnerware set for special occasions', 
      'price' => 199.99, 'category' => 'Sets', 'image_class' => 'fa-box-open'],
 ];
+// Sort products by price (high to low) using PHP
+usort($featured_products, function($a, $b) {
+    return $b['price'] <=> $a['price']; // High to low
+});
 
 // Calculate cart item count for badge
 $cart_count = calculateCartCount();
+
+// Get user info if logged in
+$user = null;
+if (isLoggedIn() && isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['full_name']) && $_SESSION['full_name']) {
+        $user = ['username' => $_SESSION['full_name']];
+    } else {
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT username FROM users WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        
+        if ($stmt) {
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+            $stmt->close();
+        }
+    }
+}
+
 
 // Prepare data for view
 $data = [
@@ -54,7 +79,8 @@ $data = [
     'cart_count' => $cart_count,
     'is_logged_in' => isLoggedIn(),
     'user_id' => $_SESSION['user_id'] ?? null,
-    'full_name' => $_SESSION['full_name'] ?? ''
+    'full_name' => $_SESSION['full_name'] ?? '',
+    'user' => $user
 ];
 
 include '../View/html/index_view.php';
