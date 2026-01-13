@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crockery Store - Premium Ceramics & Tableware</title>
+    <title>ElegantWare - Premium Ceramics & Tableware</title>
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -26,13 +26,14 @@
                     <?php if($data['is_logged_in']): ?>
                         <li><a href="#dashboard">Dashboard</a></li>
                         <li><a href="logout.php">Logout</a></li>
+                </div>
                     <?php else: ?>
                         <li><a href="login.php">Login</a></li>
                         <li><a href="register.php">Register</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
-             
+        
         </nav>
     </header>
 
@@ -58,45 +59,7 @@
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="container">
-                <h2 class="section-title">Why Choose Our Store</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <h3>Free Shipping</h3>
-                        <p>On all orders over $50</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-undo-alt"></i>
-                        </div>
-                        <h3>30-Day Returns</h3>
-                        <p>Easy return policy</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3>24/7 Support</h3>
-                        <p>Customer service always available</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3>Premium Quality</h3>
-                        <p>Handcrafted with care</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- Products Section -->
         <section id="products" class="products-section">
