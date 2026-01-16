@@ -10,7 +10,22 @@
 <body>
     <header>
         <nav class="navbar container">
-            <a href="index.php" class="logo">Elegant<span>Ware</span></a>
+            <nav>
+                <a href="index.php" class="logo">Elegant<span>Ware</span></a>
+                <div class="search-container">
+                            <form id="searchForm" method="get" action="index.php" class="search-form">
+                                <div class="search-input-group">
+                                    <input type="text"
+                                    name="search" id="searchInput" 
+                                    class="search-input" placeholder="Search products..." 
+                                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" autocomplete="off">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                        </div>
+                            </form>
+                        </div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="index.php#categories">Categories</a></li>
@@ -21,14 +36,16 @@
                     <?php endif; ?>
                 </a></li>
                 <li><a href="#checkout">Checkout</a></li>
-                <li><a href="#dashboard">My Account</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-            <?php if ($data['user'] && isset($data['user']['username'])): ?>
+                <li><a href="#dashboard">Profile</a></li>
+                <?php if ($data['user'] && isset($data['user']['username'])): ?>
                 <div class="welcome-user">
                     <i class="fas fa-user-circle"></i> Welcome, <?php echo htmlspecialchars($data['user']['username']); ?>!
                 </div>
             <?php endif; ?>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+            
+            </nav>
         </nav>
     </header>
 

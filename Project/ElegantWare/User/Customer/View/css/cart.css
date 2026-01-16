@@ -1156,3 +1156,125 @@ footer {
     color: #155724;
     border-color: #27ae60;
 }
+/* ======================
+   AJAX-SPECIFIC STYLES
+   ====================== */
+
+.cart-item-removing {
+    opacity: 0.5 !important;
+    transition: opacity 0.3s ease-out !important;
+}
+
+.subtotal-cell {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    transition: color 0.3s ease !important;
+}
+
+.quantity-input:focus {
+    border-color: #3498db !important;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2) !important;
+    outline: none !important;
+}
+
+.quantity-btn:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+/* Loading spinner for AJAX operations */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* AJAX update animation */
+@keyframes highlightUpdate {
+    0% { background-color: rgba(52, 152, 219, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.subtotal-cell.updated {
+    animation: highlightUpdate 0.5s ease;
+}
+
+/* Cart notification styles (if not already present) */
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #27ae60;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(150%) translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999;
+    max-width: 350px;
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+
+.cart-notification.error {
+    background: #e74c3c;
+}
+
+.cart-notification .notification-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-notification i {
+    font-size: 1.2em;
+}
+
+/* Ensure cart actions are properly spaced */
+.cart-actions {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 25px 30px !important;
+    background: #f8f9fa !important;
+    border-top: 1px solid #eee !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+.action-buttons {
+    display: flex !important;
+    gap: 15px !important;
+}
+
+/* Responsive adjustments for AJAX cart */
+@media (max-width: 768px) {
+    .cart-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cart-notification {
+        max-width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+    }
+}

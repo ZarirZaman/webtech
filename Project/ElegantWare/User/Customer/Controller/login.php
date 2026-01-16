@@ -1,8 +1,5 @@
 <?php
-// Include config to start session and get database connection
 require_once '../Model/config.php';
-
-// Include auth functions
 require_once '../Model/auth.php';
 
 $message = '';
