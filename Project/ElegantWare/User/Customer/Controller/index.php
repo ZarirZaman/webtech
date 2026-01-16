@@ -2,7 +2,6 @@
 require_once '../Model/config.php';
 require_once '../Model/auth.php';
 require_once '../Model/cart_func.php';
-
 // Initialize cart session if not exists
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -62,7 +61,6 @@ if (!empty($search_term)) {
 
 // Get category filter if present
 $current_category = isset($_GET['category']) ? $_GET['category'] : '';
-
 $current_sort = isset($_GET['sort']) ? $_GET['sort'] : 'high-low';
 
 // Filter products by category if category is specified

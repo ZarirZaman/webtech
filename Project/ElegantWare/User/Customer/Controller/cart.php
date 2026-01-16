@@ -16,14 +16,6 @@ if (!isset($_SESSION['cart'])) {
 $error = '';
 $success = '';
 
-if (isset($_GET['add_to_cart'])) {
-    $product_id = intval($_GET['add_to_cart']);
-    addToCart($product_id);
-    
-    $_SESSION['cart_message'] = 'Product added to cart!';
-    header('Location: cart.php');
-    exit();
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_to_cart'])) {
@@ -71,6 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: cart.php');
     exit();
 }
+if (isset($_GET['add_to_cart'])) {
+    $product_id = intval($_GET['add_to_cart']);
+    addToCart($product_id);
+    
+    $_SESSION['cart_message'] = 'Product added to cart!';
+    header('Location: cart.php');
+    exit();
+}
 
 $products = [
     1 => [
@@ -79,7 +79,8 @@ $products = [
         'description' => 'Beautiful ceramic dinner plates, set of 6', 
         'price' => 29.99, 
         'category' => 'Plates', 
-        'image' => 'plate.jpg'
+        'image' => 'plate.jpg',
+        'image_class' => 'fa-utensils'
     ],
     2 => [
         'id' => 2, 
@@ -87,7 +88,8 @@ $products = [
         'description' => 'Elegant porcelain bowls for soup or salad', 
         'price' => 24.99, 
         'category' => 'Bowls', 
-        'image' => 'bowl.jpg'
+        'image' => 'bowl.jpg',
+        'image_class' => 'fa-bowl-food'
     ],
     3 => [
         'id' => 3, 
@@ -95,7 +97,8 @@ $products = [
         'description' => 'Set of 4 ceramic coffee mugs', 
         'price' => 19.99, 
         'category' => 'Cups', 
-        'image' => 'cup.jpg'
+        'image' => 'cup.jpg',
+        'image_class' => 'fa-mug-hot'
     ],
     4 => [
         'id' => 4, 
@@ -103,21 +106,58 @@ $products = [
         'description' => '32-piece dinner set for family occasions', 
         'price' => 149.99, 
         'category' => 'Sets', 
-        'image' => 'set.jpg'
+        'image' => 'set.jpg',
+        'image_class' => 'fa-box-open'
+    ],
+    5 => [
+        'id' => 5, 
+        'name' => 'Decorative Serving Platters', 
+        'description' => 'Set of 4 decorative serving platters', 
+        'price' => 39.99, 
+        'category' => 'Plates', 
+        'image' => 'platter.jpg',
+        'image_class' => 'fa-utensils'
+    ],
+    6 => [
+        'id' => 6, 
+        'name' => 'Handcrafted Salad Bowls', 
+        'description' => 'Unique handcrafted bowls for salads', 
+        'price' => 34.99, 
+        'category' => 'Bowls', 
+        'image' => 'salad_bowl.jpg',
+        'image_class' => 'fa-bowl-food'
+    ],
+    7 => [
+        'id' => 7, 
+        'name' => 'Tea Cup Set', 
+        'description' => 'Elegant tea cup set with saucers, set of 4', 
+        'price' => 27.99, 
+        'category' => 'Cups', 
+        'image' => 'tea_cup.jpg',
+        'image_class' => 'fa-mug-hot'
+    ],
+    8 => [
+        'id' => 8, 
+        'name' => 'Luxury Dinnerware Set', 
+        'description' => '24-piece luxury dinnerware set for special occasions', 
+        'price' => 199.99, 
+        'category' => 'Sets', 
+        'image' => 'luxury_set.jpg',
+        'image_class' => 'fa-box-open'
     ],
 ];
 
+// After the $products array definition in cart.php
 $cart_items = [];
 $cart_total = 0;
 $item_count = 0;
 
 foreach ($_SESSION['cart'] as $index => $cart_item) {
-    if (isset($cart_item['product_id'])) {
-        $product_id = intval($cart_item['product_id']);
-    } elseif (isset($cart_item['id'])) {
+    // Always use 'id' key as defined in cart_func.php
+    if (isset($cart_item['id'])) {
         $product_id = intval($cart_item['id']);
     } else {
-        continue; 
+        continue; // Skip invalid items
     }
     
     if (isset($products[$product_id])) {
@@ -137,6 +177,8 @@ foreach ($_SESSION['cart'] as $index => $cart_item) {
         $item_count += $quantity;
     }
 }
+
+// Continue with the rest of your cart.php code...
 
 // Calculate shipping, tax, and totals
 $shipping_fee = ($cart_total > 50 || $item_count == 0) ? 0 : 5.99;

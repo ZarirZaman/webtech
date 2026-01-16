@@ -6,12 +6,23 @@ function addToCart($product_id, $quantity = 1) {
         $_SESSION['cart'] = [];
     }
     
-    // Add as a new item at the end of the array
-    $_SESSION['cart'][] = [
-        'id' => $product_id,
-        'quantity' => $quantity,
-        'added_at' => date('Y-m-d H:i:s')
-    ];
+    $found = false;
+    foreach ($_SESSION['cart'] as &$item) {
+        if (isset($item['id']) && $item['id'] == $product_id) {
+            $item['quantity'] += $quantity;
+            $found = true;
+            break;
+        }
+    }
+    
+    // If not found, add as new item
+    if (!$found) {
+        $_SESSION['cart'][] = [
+            'id' => $product_id,
+            'quantity' => $quantity,
+            'added_at' => date('Y-m-d H:i:s')
+        ];
+    }
 }
 
 function calculateCartCount() {
