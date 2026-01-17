@@ -7,27 +7,21 @@ require_once '../Model/cart_func.php';
 class CheckoutController {
     
     public function index() {
-        // Check if user is logged in
         if (!isLoggedIn()) {
             redirect('login.php');
         }
         
-        // Check if cart is empty
         if (empty($_SESSION['cart'] ?? [])) {
             $_SESSION['error_message'] = 'Your cart is empty. Please add items to your cart before checking out.';
             redirect('cart.php');
         }
         
-        // Get cart data
         $cart_data = $this->getCartData();
         
-        // Get user data
         $user_data = $this->getUserData();
         
-        // Combine data for view
         $data = array_merge($cart_data, $user_data);
         
-        // Include checkout view
         include '../View/html/checkout_view.php';
     }
     
@@ -36,7 +30,6 @@ class CheckoutController {
             redirect('checkout.php');
         }
         
-        // Validate and process order
         if ($this->validateCheckoutData()) {
             $order_id = $this->createOrder();
             
@@ -55,7 +48,6 @@ class CheckoutController {
         $cart_total = 0;
         $item_count = 0;
         
-        // Simple product data (should come from database)
         $products = [
             1 => ['price' => 29.99, 'name' => 'Ceramic Dinner Plate Set'],
             2 => ['price' => 24.99, 'name' => 'Porcelain Soup Bowls'],
@@ -124,7 +116,6 @@ class CheckoutController {
     }
     
     private function validateCheckoutData() {
-        // Basic validation
         $required_fields = ['first_name', 'last_name', 'street_address', 'city', 'state', 'zip_code', 'phone', 'payment_method'];
         
         foreach ($required_fields as $field) {
@@ -138,8 +129,6 @@ class CheckoutController {
     }
     
     private function createOrder() {
-        // Generate a simple order ID for demo
-        // In real app, this would insert into database
         return 'ORD' . time() . rand(100, 999);
     }
     
@@ -147,8 +136,6 @@ class CheckoutController {
         unset($_SESSION['cart']);
     }
 }
-
-// Handle request
 $action = $_GET['action'] ?? 'index';
 $controller = new CheckoutController();
 

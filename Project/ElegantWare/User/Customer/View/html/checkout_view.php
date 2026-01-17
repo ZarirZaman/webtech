@@ -313,7 +313,6 @@
     </main>
 
     <script>
-        // Form validation
         document.querySelector('form').addEventListener('submit', function(e) {
             const terms = document.getElementById('terms');
             if (!terms.checked) {
@@ -322,8 +321,6 @@
                 terms.focus();
                 return false;
             }
-            
-            // Confirm order placement
             if (!confirm('Are you sure you want to place this order?')) {
                 e.preventDefault();
                 return false;
