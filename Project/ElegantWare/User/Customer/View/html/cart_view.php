@@ -35,7 +35,7 @@
                         <span class="cart-badge"><?php echo $data['item_count']; ?></span>
                     <?php endif; ?>
                 </a></li>
-                <li><a href="#checkout">Checkout</a></li>
+                <li><a href="checkout.php">Checkout</a></li>
                 <li><a href="#dashboard">Profile</a></li>
                 <?php if ($data['user'] && isset($data['user']['username'])): ?>
                 <div class="welcome-user">
@@ -211,13 +211,13 @@
                         
                         <!-- Checkout Button -->
                         <?php if (count($data['cart_items']) > 0): ?>
-                            <a href="#checkout" class="btn-checkout">
+                            <a href="checkout.php" class="btn-checkout">
                                 <i class="fas fa-lock"></i> Proceed to Checkout
                             </a>
                         <?php else: ?>
-                            <button class="btn-checkout" disabled>
-                                <i class="fas fa-lock"></i> Proceed to Checkout
-                            </button>
+                        <a href="checkout.php" class="btn-checkout">
+                            <i class="fas fa-lock"></i> Proceed to Checkout
+                        </a>
                         <?php endif; ?>
                         
                         <a href="index.php#products" class="continue-shopping">
