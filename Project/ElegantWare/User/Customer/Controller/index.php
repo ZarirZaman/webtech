@@ -2,12 +2,11 @@
 require_once '../Model/config.php';
 require_once '../Model/auth.php';
 require_once '../Model/cart_func.php';
-// Initialize cart session if not exists
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Handle adding to cart from index page
 if (isset($_GET['add_to_cart'])) {
     $product_id = intval($_GET['add_to_cart']);
     addToCart($product_id);
@@ -17,7 +16,6 @@ if (isset($_GET['add_to_cart'])) {
     exit();
 }
 
-// Get search term if present
 $search_term = isset($_GET['search']) ? trim($_GET['search']) : '';
 
 // Sample products for home page
@@ -75,34 +73,31 @@ if (!empty($current_category)) {
 switch ($current_sort) {
     case 'low-high':
         usort($featured_products, function($a, $b) {
-            return $a['price'] <=> $b['price']; // Low to High
+            return $a['price'] <=> $b['price']; 
         });
         break;
     case 'name-asc':
         usort($featured_products, function($a, $b) {
-            return strcmp($a['name'], $b['name']); // A to Z
+            return strcmp($a['name'], $b['name']); 
         });
         break;
     case 'name-desc':
         usort($featured_products, function($a, $b) {
-            return strcmp($b['name'], $a['name']); // Z to A
+            return strcmp($b['name'], $a['name']); 
         });
         break;
     case 'high-low':
     default:
         usort($featured_products, function($a, $b) {
-            return $b['price'] <=> $a['price']; // High to Low (default)
+            return $b['price'] <=> $a['price']; 
         });
         break;
 }
 
-// Define categories for the filter bar
 $categories = ['All', 'Plates', 'Bowls', 'Cups', 'Sets'];
 
-// Calculate cart item count for badge
 $cart_count = calculateCartCount();
 
-// Get user info if logged in
 $user = null;
 if (isLoggedIn() && isset($_SESSION['user_id'])) {
     if (isset($_SESSION['full_name']) && $_SESSION['full_name']) {
@@ -122,7 +117,6 @@ if (isLoggedIn() && isset($_SESSION['user_id'])) {
     }
 }
 
-// Prepare data for view
 $data = [
     'featured_products' => $featured_products,
     'categories' => $categories,
