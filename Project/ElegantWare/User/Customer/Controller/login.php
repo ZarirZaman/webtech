@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result['success'] === true) {
 
-        // Redirect based on user type
+        
         if ($result['user_type'] === 'admin') {
             redirect('admin/dashboard.php');
         } else {
@@ -33,12 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Check for registration success message
 if (isset($_GET['registered']) && $_GET['registered'] === 'true') {
     $message = 'Registration successful! Please login with your credentials.';
     $message_type = 'success';
 }
 
-// Include the view
 include '../View/html/login_view.php';
 ?>
