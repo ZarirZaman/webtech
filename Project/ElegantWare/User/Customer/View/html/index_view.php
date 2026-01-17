@@ -30,17 +30,19 @@
                     <li><a href="index.php" class="active">Home</a></li>
                     <li><a href="#categories">Categories</a></li>
                     <li>
-    <a href="cart.php" class="cart-link">
-        <i class="fas fa-shopping-cart"></i> Cart
-        <?php 
-        // Check if cart count exists and is valid
-        if (!empty($data['cart_count']) && is_numeric($data['cart_count']) && $data['cart_count'] > 0): 
-        ?>
-            <span class="cart-badge"><?php echo htmlspecialchars($data['cart_count']); ?></span>
-        <?php endif; ?>
-    </a>
-</li>
-                    <li><a href="#products">Checkout</a></li>
+                        <a href="cart.php" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <?php 
+                         // Check if cart count exists and is valid
+                        if (!empty($data['cart_count']) && is_numeric($data['cart_count']) && $data['cart_count'] > 0): 
+                        ?>
+                        <span class="cart-badge"><?php echo htmlspecialchars($data['cart_count']); 
+                        ?>
+                        </span>
+                        <?php endif; ?>
+                    </a>
+                    </li>
+                    <li><a href="checkout.php">Checkout</a></li>
                     
                         
                     

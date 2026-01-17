@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             redirect('dashboard.php');
         }
     } else {
-        // Handle both array and boolean returns from loginUser()
         if (is_array($result)) {
             $message = $result['message'] ?? 'Invalid email or password';
         } else {
