@@ -1,8 +1,5 @@
 <?php
-// Include config to start session and get database connection
 require_once '../Model/config.php';
-
-// Include auth functions
 require_once '../Model/auth.php';
 
 $message = '';
@@ -24,7 +21,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message_type = 'danger';
     }
 }
-
-// Include the view
 include '../View/html/register_view.php';
 ?>

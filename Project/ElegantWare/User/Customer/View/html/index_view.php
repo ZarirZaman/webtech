@@ -221,16 +221,15 @@
                             
                             <div class="product-actions">
                                 <?php if(isset($data['is_logged_in']) && $data['is_logged_in']): ?>
-                                   <form method="POST" action="cart.php" class="add-to-cart-form" style="display: inline;">
-        <input type="hidden" name="product_id" value="<?php echo isset($product['id']) ? $product['id'] : ''; ?>">
-        <input type="hidden" name="quantity" value="1">
-        <button type="submit" name="add_to_cart" 
-                class="add-to-cart-btn quick-add-btn"
-                data-product-id="<?php echo isset($product['id']) ? $product['id'] : ''; ?>"
-                data-product-name="<?php echo isset($product['name']) ? htmlspecialchars($product['name']) : 'Product'; ?>">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
-    </form>
+                                    <form method="POST" action="cart.php" class="add-to-cart-form" style="display: inline;">
+                                    <input type="hidden" name="product_id" value="<?php echo isset($product['id']) ? $product['id'] : ''; ?>">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" name="add_to_cart" class="add-to-cart-btn quick-add-btn" 
+                                    data-product-id="<?php echo isset($product['id']) ? $product['id'] : ''; ?>"
+                                    data-product-name="<?php echo isset($product['name']) ? htmlspecialchars($product['name']) : 'Product'; ?>">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                    </button>
+                                   </form>
                                 <?php else: ?>
                                     <a href="login.php" 
                                        class="add-to-cart-btn login-to-buy-btn">
@@ -316,7 +315,7 @@
                     <h3>Contact Info</h3>
                     <ul class="contact-info">
                         <li><i class="fas fa-map-marker-alt"></i> 123 Ceramic Street, Art District</li>
-                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-phone"></i> 01629902495</li>
                         <li><i class="fas fa-envelope"></i> info@elegantware.com</li>
                     </ul>
                 </div>
