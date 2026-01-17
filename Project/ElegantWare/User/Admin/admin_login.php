@@ -1,6 +1,7 @@
 <?php
 session_start();
-include "db.php";
+require_once '../Model/config.php';
+require_once '../Model/auth.php';
 
 $error = "";
 
