@@ -12,19 +12,29 @@ if (isLoggedIn()) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
-    
-    if (loginUser($email, $password)) {
-        redirect('index.php');
+
+    $result = loginUser($email, $password);
+
+    if ($result['success'] === true) {
+
+        // Redirect based on user type
+        if ($result['user_type'] === 'admin') {
+            redirect('admin/admin_dashboard.php');
+        } else {
+            redirect('dashboard.php');
+        }
+
     } else {
-        $message = 'Invalid email/username or password';
+        $message = $result['message'] ?? 'Invalid email or password';
         $message_type = 'danger';
     }
 }
 
 // Check for registration success message
-if (isset($_GET['registered']) && $_GET['registered'] == 'true') {
+if (isset($_GET['registered']) && $_GET['registered'] === 'true') {
     $message = 'Registration successful! Please login with your credentials.';
     $message_type = 'success';
 }
